@@ -3,6 +3,9 @@
  */
 import _ from 'lodash';
 import '../css/style.css'
+import './bar'
+
+
 
 //   function component() {
 //     var element = document.createElement('div');
