@@ -5,6 +5,14 @@ import _ from 'lodash';
 import '../css/style.css'
 import './bar'
 
+var myImage = new Image();
+myImage.src = "./../img/luoti.jpg";    //背景图片  你自己本地的图片或者在线图片
+myImage.crossOrigin = 'Anonymous'
+
+myImage.onload = function(img){
+    console.log(img)
+}
+
 
 
 //   function component() {

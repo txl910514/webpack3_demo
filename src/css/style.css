@@ -21,3 +21,16 @@ ul {
 .map-chart {
     background: #000;
 }
+.merge_img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: #000000;
+    overflow: hidden;
+    overflow-y: auto;
+}
+img {
+    max-width: 100%;
+}
