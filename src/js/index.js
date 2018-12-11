@@ -169,6 +169,51 @@ $(function () {
         //     console.log(data.data.msg);
         // })
     })
+    $('#loginOut').on('click', function () {
+        console.log(getCookie('token'))
+        Axios.get('http://127.0.0.1:7001/facile/user/loginOut').then(function (data) {
+            console.log(data.data);
+        })
+        // Axios.post('http://47.52.128.170/facile/register/createUser', params).then(function (data) {
+        //     console.log(data.data.msg);
+        // })
+    })
+    $('#userName_save').on('click', function () {
+        var params = {
+            name: $('#editUserName').val()
+        }
+        Axios.post('http://127.0.0.1:7001/facile/user/setting/editUserName', params).then(function (data) {
+            console.log(data.data.msg);
+        })
+    })
+    $('#edit_phone_click').on('click', function () {
+        var params = {
+            original_code: $('#editPhone_original_sms_code').val(),
+            phone: $('#edit_phone').val(),
+            code: $('#editPhone_new_sms_code').val()
+        }
+        Axios.post('http://127.0.0.1:7001/facile/user/setting/editPhone', params).then(function (data) {
+            console.log(data.data.msg);
+        })
+    })
+    $('#login_original_sms_code').on('click', function () {
+        // var phone = $('#login_phone').val();
+        Axios.get('http://127.0.0.1:7001/facile/validateCode/getSmsCode?type=4').then(function (data) {
+            console.log(data);
+        })
+        // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
+        //     $('#imgageCode').html(data.data.data);
+        // })
+    })
+    $('#login_new_sms_code').on('click', function () {
+        var phone = $('#edit_phone').val();
+        Axios.get('http://127.0.0.1:7001/facile/validateCode/getSmsCode?type=5&phone=' + phone).then(function (data) {
+            console.log(data);
+        })
+        // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
+        //     $('#imgageCode').html(data.data.data);
+        // })
+    })
 })
 
 
