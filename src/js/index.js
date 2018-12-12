@@ -28,26 +28,26 @@ var data = function () {
         // Axios.get('http://47.52.128.170/facile/city/getCity').then(function (data) {
         //     resolve(data)
         // })
-        // Axios.get('http://127.0.0.1:7001/facile/city/getCity').then(function (data) {
+        // Axios.get('http://127.0.0.1/facile/city/getCity').then(function (data) {
         //     console.log(data);
         //     resolve(data);
         // })
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getImageCode?type=2').then(function (data) {
-            console.log(data.data);
-            $('#imgageCode').html(data.data.data);
-            resolve(data);
-        })
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getImageCode?type=3').then(function (data) {
-            $('#forget_imgageCode').html(data.data.data);
-        })
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getImageCode?type=1').then(function (data) {
-            $('#login_imgageCode').html(data.data.data);
-        })
-        // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
+        // Axios.get('http://127.0.0.1/facile/validateCode/getImageCode?type=2').then(function (data) {
         //     console.log(data.data);
         //     $('#imgageCode').html(data.data.data);
         //     resolve(data);
         // })
+        Axios.get('http://127.0.0.1/facile/validateCode/getImageCode?type=3').then(function (data) {
+            $('#forget_imgageCode').html(data.data.data);
+        })
+        Axios.get('http://127.0.0.1/facile/validateCode/getImageCode?type=1').then(function (data) {
+            $('#login_imgageCode').html(data.data.data);
+        })
+        Axios.get('/facile/validateCode/getImageCode?type=2').then(function (data) {
+            console.log(data.data);
+            $('#imgageCode').html(data.data.data);
+            resolve(data);
+        })
     })
 }
 
@@ -55,15 +55,15 @@ data()
 console.log($);
 $(function () {
     $('#imgageCode').on('click', function () {
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getImageCode?type=2').then(function (data) {
-            $('#imgageCode').html(data.data.data);
-        })
-        // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
+        // Axios.get('http://127.0.0.1/facile/validateCode/getImageCode?type=2').then(function (data) {
         //     $('#imgageCode').html(data.data.data);
         // })
+        Axios.get('/facile/validateCode/getImageCode?type=2').then(function (data) {
+            $('#imgageCode').html(data.data.data);
+        })
     })
     $('#forget_imgageCode').on('click', function () {
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getImageCode?type=3').then(function (data) {
+        Axios.get('http://127.0.0.1/facile/validateCode/getImageCode?type=3').then(function (data) {
             $('#forget_imgageCode').html(data.data.data);
         })
         // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
@@ -71,7 +71,7 @@ $(function () {
         // })
     })
     $('#login_imgageCode').on('click', function () {
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getImageCode?type=1').then(function (data) {
+        Axios.get('/facile/validateCode/getImageCode?type=1').then(function (data) {
             $('#login_imgageCode').html(data.data.data);
         })
         // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
@@ -80,12 +80,12 @@ $(function () {
     })
     $('#get_sms_code').on('click', function () {
         var phone = $('#phone').val();
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getSmsCode?type=2&phone=' + phone).then(function (data) {
+        // Axios.get('http://127.0.0.1/facile/validateCode/getSmsCode?type=2&phone=' + phone).then(function (data) {
+        //     console.log(data);
+        // })
+        Axios.get('/facile/validateCode/getSmsCode?type=2&phone=' + phone).then(function (data) {
             console.log(data);
         })
-        // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
-        //     $('#imgageCode').html(data.data.data);
-        // })
     })
 
     $('#reg').on('click', function () {
@@ -97,16 +97,16 @@ $(function () {
             code: $('#code').val(),
             sms_code: $('#sms_code').val()
         }
-        Axios.post('http://127.0.0.1:7001/facile/user/register/createUser', params).then(function (data) {
-            console.log(data.data.msg);
-        })
-        // Axios.post('http://47.52.128.170/facile/register/createUser', params).then(function (data) {
+        // Axios.post('http://127.0.0.1/facile/user/register/createUser', params).then(function (data) {
         //     console.log(data.data.msg);
         // })
+        Axios.post('/facile/user/register/createUser', params).then(function (data) {
+            console.log(data.data.msg);
+        })
     })
     $('#forget_get_sms_code').on('click', function () {
         var phone = $('#forget_phone').val();
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getSmsCode?type=3&phone=' + phone).then(function (data) {
+        Axios.get('http://127.0.0.1/facile/validateCode/getSmsCode?type=3&phone=' + phone).then(function (data) {
             console.log(data);
         })
         // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
@@ -121,7 +121,7 @@ $(function () {
             code: $('#forget_code').val(),
             sms_code: $('#forget_sms_code').val()
         }
-        Axios.post('http://127.0.0.1:7001/facile/user/forgetPassword', params).then(function (data) {
+        Axios.post('http://127.0.0.1/facile/user/forgetPassword', params).then(function (data) {
             console.log(data.data.msg);
         })
         // Axios.post('http://47.52.128.170/facile/register/createUser', params).then(function (data) {
@@ -134,7 +134,7 @@ $(function () {
             password: $('#login_password').val(),
             code: $('#login_code').val()
         }
-        Axios.post('http://127.0.0.1:7001/facile/user/login', params).then(function (data) {
+        Axios.post('/facile/user/login', params).then(function (data) {
             console.log(data.data.msg);
         })
         // Axios.post('http://47.52.128.170/facile/register/createUser', params).then(function (data) {
@@ -143,7 +143,7 @@ $(function () {
     })
     $('#login_get_sms_code').on('click', function () {
         var phone = $('#login_phone').val();
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getSmsCode?type=1&phone=' + phone).then(function (data) {
+        Axios.get('http://127.0.0.1/facile/validateCode/getSmsCode?type=1&phone=' + phone).then(function (data) {
             console.log(data);
         })
         // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
@@ -156,13 +156,13 @@ $(function () {
             code: $('#png_login_code').val(),
             sms_code: $('#login_sms_code').val() 
         }
-        Axios.post('http://127.0.0.1:7001/facile/user/smsLogin', params).then(function (data) {
+        Axios.post('http://127.0.0.1/facile/user/smsLogin', params).then(function (data) {
             console.log(data.data.msg);
         })
     })
     $('#getCity').on('click', function () {
         console.log(getCookie('token'))
-        Axios.get('http://127.0.0.1:7001/facile/city/getCity').then(function (data) {
+        Axios.get('http://127.0.0.1/facile/city/getCity').then(function (data) {
             console.log(data.data);
         })
         // Axios.post('http://47.52.128.170/facile/register/createUser', params).then(function (data) {
@@ -171,7 +171,7 @@ $(function () {
     })
     $('#loginOut').on('click', function () {
         console.log(getCookie('token'))
-        Axios.get('http://127.0.0.1:7001/facile/user/loginOut').then(function (data) {
+        Axios.get('http://127.0.0.1/facile/user/loginOut').then(function (data) {
             console.log(data.data);
         })
         // Axios.post('http://47.52.128.170/facile/register/createUser', params).then(function (data) {
@@ -182,7 +182,7 @@ $(function () {
         var params = {
             name: $('#editUserName').val()
         }
-        Axios.post('http://127.0.0.1:7001/facile/user/setting/editUserName', params).then(function (data) {
+        Axios.post('http://127.0.0.1/facile/user/setting/editUserName', params).then(function (data) {
             console.log(data.data.msg);
         })
     })
@@ -192,13 +192,13 @@ $(function () {
             phone: $('#edit_phone').val(),
             code: $('#editPhone_new_sms_code').val()
         }
-        Axios.post('http://127.0.0.1:7001/facile/user/setting/editPhone', params).then(function (data) {
+        Axios.post('http://127.0.0.1/facile/user/setting/editPhone', params).then(function (data) {
             console.log(data.data.msg);
         })
     })
     $('#login_original_sms_code').on('click', function () {
         // var phone = $('#login_phone').val();
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getSmsCode?type=4').then(function (data) {
+        Axios.get('http://127.0.0.1/facile/validateCode/getSmsCode?type=4').then(function (data) {
             console.log(data);
         })
         // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
@@ -207,7 +207,7 @@ $(function () {
     })
     $('#login_new_sms_code').on('click', function () {
         var phone = $('#edit_phone').val();
-        Axios.get('http://127.0.0.1:7001/facile/validateCode/getSmsCode?type=5&phone=' + phone).then(function (data) {
+        Axios.get('http://127.0.0.1/facile/validateCode/getSmsCode?type=5&phone=' + phone).then(function (data) {
             console.log(data);
         })
         // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
