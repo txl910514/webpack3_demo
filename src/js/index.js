@@ -43,22 +43,24 @@ var data = function () {
         Axios.get('http://127.0.0.1/facile/validateCode/getImageCode?type=1').then(function (data) {
             $('#login_imgageCode').html(data.data.data);
         })
-        Axios.get('/facile/validateCode/getImageCode?type=2').then(function (data) {
+        Axios.get('http://127.0.0.1/facile/validateCode/getImageCode?type=2').then(function (data) {
             console.log(data.data);
             $('#imgageCode').html(data.data.data);
             resolve(data);
+        })
+        Axios.get('http://127.0.0.1/facile/user/setting/userInfo').then(function (data) {
+            console.log(data);
         })
     })
 }
 
 data()
-console.log($);
 $(function () {
     $('#imgageCode').on('click', function () {
         // Axios.get('http://127.0.0.1/facile/validateCode/getImageCode?type=2').then(function (data) {
         //     $('#imgageCode').html(data.data.data);
         // })
-        Axios.get('/facile/validateCode/getImageCode?type=2').then(function (data) {
+        Axios.get('http://127.0.0.1/facile/validateCode/getImageCode?type=2').then(function (data) {
             $('#imgageCode').html(data.data.data);
         })
     })
@@ -71,7 +73,7 @@ $(function () {
         // })
     })
     $('#login_imgageCode').on('click', function () {
-        Axios.get('/facile/validateCode/getImageCode?type=1').then(function (data) {
+        Axios.get('http://127.0.0.1/facile/validateCode/getImageCode?type=1').then(function (data) {
             $('#login_imgageCode').html(data.data.data);
         })
         // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
@@ -83,7 +85,7 @@ $(function () {
         // Axios.get('http://127.0.0.1/facile/validateCode/getSmsCode?type=2&phone=' + phone).then(function (data) {
         //     console.log(data);
         // })
-        Axios.get('/facile/validateCode/getSmsCode?type=2&phone=' + phone).then(function (data) {
+        Axios.get('http://127.0.0.1/facile/validateCode/getSmsCode?type=2&phone=' + phone).then(function (data) {
             console.log(data);
         })
     })
@@ -100,7 +102,7 @@ $(function () {
         // Axios.post('http://127.0.0.1/facile/user/register/createUser', params).then(function (data) {
         //     console.log(data.data.msg);
         // })
-        Axios.post('/facile/user/register/createUser', params).then(function (data) {
+        Axios.post('http://127.0.0.1/facile/user/register/createUser', params).then(function (data) {
             console.log(data.data.msg);
         })
     })
@@ -134,7 +136,7 @@ $(function () {
             password: $('#login_password').val(),
             code: $('#login_code').val()
         }
-        Axios.post('/facile/user/login', params).then(function (data) {
+        Axios.post('http://127.0.0.1/facile/user/login', params).then(function (data) {
             console.log(data.data.msg);
         })
         // Axios.post('http://47.52.128.170/facile/register/createUser', params).then(function (data) {
@@ -213,6 +215,55 @@ $(function () {
         // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
         //     $('#imgageCode').html(data.data.data);
         // })
+    })
+    $('#get_add_email_code').on('click', function () {
+        var email = $('#add_email').val();
+        Axios.get('http://127.0.0.1/facile/validateCode/getEmailCode?type=7&email=' + email).then(function (data) {
+            console.log(data);
+        })
+        // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
+        //     $('#imgageCode').html(data.data.data);
+        // })
+    })
+    $('#add_email_click').on('click', function () {
+        var params = {
+            email: $('#add_email').val(),
+            code: $('#add_email_code').val()
+        }
+        Axios.post('http://127.0.0.1/facile/user/setting/addEmail', params).then(function (data) {
+            console.log(data);
+        })
+        // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
+        //     $('#imgageCode').html(data.data.data);
+        // })
+    })
+    $('#login_original_email_code').on('click', function () {
+        // var phone = $('#login_phone').val();
+        Axios.get('http://127.0.0.1/facile/validateCode/getEmailCode?type=6').then(function (data) {
+            console.log(data);
+        })
+        // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
+        //     $('#imgageCode').html(data.data.data);
+        // })
+    })
+    $('#login_new_email_code').on('click', function () {
+        var email = $('#edit_email').val();
+        Axios.get('http://127.0.0.1/facile/validateCode/getEmailCode?type=7&email=' + email).then(function (data) {
+            console.log(data);
+        })
+        // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
+        //     $('#imgageCode').html(data.data.data);
+        // })
+    })
+    $('#edit_email_click').on('click', function () {
+        var params = {
+            original_code: $('#editEmail_original_code').val(),
+            email: $('#edit_email').val(),
+            code: $('#editEmail_new_code').val()
+        }
+        Axios.post('http://127.0.0.1/facile/user/setting/editEmail', params).then(function (data) {
+            console.log(data.data.msg);
+        })
     })
 })
 
