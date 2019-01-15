@@ -24,7 +24,8 @@ var pngUse = [
 module.exports = {
     entry: {
         index: './src/js/index.js',
-        merge: './src/js/merge.js'
+        merge: './src/js/merge.js',
+        socket: './src/js/socket.js'
     },
     output: {
         filename: '[name].js',
@@ -38,6 +39,13 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use:[{
+                  loader: 'babel-loader'
+                }]
+            },
             {
                 test: /\.css$/,
                 use: [
@@ -71,6 +79,13 @@ module.exports = {
             filename: 'merge_img.html',
             template: path.resolve(__dirname, './merge_img.html'),
             chunks: ['merge', 'vendor'],
+            inject: true
+        }),
+        new HtmlWebpackPlugin({
+            title: "socket",
+            filename: 'socket.html',
+            template: path.resolve(__dirname, './socket.html'),
+            chunks: ['socket', 'vendor'],
             inject: true
         }),
     ]
