@@ -25,7 +25,8 @@ module.exports = {
     entry: {
         index: './src/js/index.js',
         merge: './src/js/merge.js',
-        socket: './src/js/socket.js'
+        socket: './src/js/socket.js',
+        indexeddb: './src/js/indexeddb.js'
     },
     output: {
         filename: '[name].js',
@@ -88,5 +89,12 @@ module.exports = {
             chunks: ['socket', 'vendor'],
             inject: true
         }),
+        new HtmlWebpackPlugin({
+            title: "indexeddb",
+            filename: 'indexeddb.html',
+            template: path.resolve(__dirname, './indexeddb.html'),
+            chunks: ['indexeddb', 'vendor'],
+            inject: true
+        })
     ]
 };
