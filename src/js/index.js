@@ -245,7 +245,7 @@ $(function () {
         // Axios.get('http://47.52.128.170/facile/validateCode/getImageCode?type=2').then(function (data) {
         //     $('#imgageCode').html(data.data.data);
         // })
-    })
+    })                                                                                                                                                                                                                                                                                                                    
     $('#login_new_email_code').on('click', function () {
         var email = $('#edit_email').val();
         Axios.get('http://127.0.0.1/facile/validateCode/getEmailCode?type=7&email=' + email).then(function (data) {

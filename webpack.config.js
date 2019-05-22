@@ -4,6 +4,7 @@
 var path = require('path');
 var webpack = require("webpack");
 let HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const utils = {
     assetsPath: function (_path) {
         return path.posix.join('static', _path)
@@ -26,7 +27,8 @@ module.exports = {
         index: './src/js/index.js',
         merge: './src/js/merge.js',
         socket: './src/js/socket.js',
-        indexeddb: './src/js/indexeddb.js'
+        indexeddb: './src/js/indexeddb.js',
+        echartsJs: './src/js/echarts.js'
     },
     output: {
         filename: '[name].js',
@@ -95,6 +97,20 @@ module.exports = {
             template: path.resolve(__dirname, './indexeddb.html'),
             chunks: ['indexeddb', 'vendor'],
             inject: true
-        })
+        }),
+        new HtmlWebpackPlugin({
+            title: "echarts",
+            filename: 'echarts.html',
+            template: path.resolve(__dirname, './echarts.html'),
+            chunks: ['echartsJs', 'vendor'],
+            inject: true
+        }),
+        new CopyWebpackPlugin([
+            {
+              from: path.resolve(__dirname, 'static'),
+              to: 'static',
+              ignore: ['.*']
+            }
+          ])
     ]
 };
