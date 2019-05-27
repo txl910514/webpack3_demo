@@ -185,10 +185,28 @@ const menu = {"menus":[
     }
     return nodes;
   }
+
+  function BreadcrumbTwo (menu, path, nodes) {
+    nodes = nodes || [];
+    menu = menu || []; 
+    for (var i =0; i < menu.length; i++) {
+        if (path === menu[i].menuUrl && menu[i].menuUrl) {
+            nodes.unshift(menu[i]);
+        }
+        if (menu[i].subMenu) {
+            nodes = BreadcrumbTwo(menu[i].subMenu, path, nodes);
+            if (menu[i].subMenu.some(v => v === nodes[0])) {
+                nodes.unshift(menu[i]);
+            }
+        }
+    }
+    return nodes;
+  }
 $(function () {
-    console.log(menu.menus);
+    var nodes = [];
     var Breadcrumb_arr = Breadcrumb(menu.menus, path);
-    console.log(Breadcrumb_arr);
+    var BreadcrumbTwo_arr = BreadcrumbTwo(menu.menus, path, nodes);
+    console.log(BreadcrumbTwo_arr);
     var mapDom = document.querySelector('#Map');
     document.q
     var  echartOption =  {
